@@ -11,8 +11,7 @@ export const someList: TList[] = [
 	{
 		id: 2,
 		name: "Clouds in the sky",
-		description:
-			"When will I get the freedom to get out of house and enjoy the joy of beautiful nature, its been 4 years since I haven't gotten out of my house, I hope one day when I will make money I will be able to get out of house",
+		description: "I want to touch grass and enjoy the beautiful clouds",
 		image: "/clouds.jpeg",
 	},
 	{

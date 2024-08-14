@@ -21,7 +21,7 @@ const useMouse = ({ radius }: TUseMouse) => {
 
 		window.addEventListener("mousemove", mouseMove);
 		return () => window.removeEventListener("mousemove", mouseMove);
-	}, [mouse.x.set, mouse.y.set, radius]);
+	}, [mouse.x, mouse.y, radius]);
 
 	return mouse;
 };

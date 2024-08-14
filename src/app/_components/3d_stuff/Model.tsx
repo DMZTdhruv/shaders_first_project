@@ -1,5 +1,5 @@
 import useMouse from "@/app/hooks/useMouse";
-import React, { act, useEffect, useRef } from "react";
+import React, { act, useEffect, useMemo, useRef } from "react";
 import { motion } from "framer-motion-3d";
 import useDimension from "@/app/hooks/useDimension";
 import { useMotionValue, useSpring, useTransform } from "framer-motion";
@@ -35,9 +35,8 @@ const fragment = `
 `;
 
 const Model = ({ activeProject }: { activeProject: TList | null }) => {
-	const texture = useTexture("/furina_2.jpeg");
+	const textures = useTexture(someList.map((list) => list.image));
 
-	const textures = someList.map((list) => useTexture(list.image));
 	const meshRef = useRef(null);
 	// some required custom - hooks
 	const mouse = useMouse({});
@@ -45,7 +44,7 @@ const Model = ({ activeProject }: { activeProject: TList | null }) => {
 
 	const { viewport } = useThree();
 	const uniform = useRef({
-		u_texture: { value: texture },
+		u_texture: { value: textures[0] },
 		u_delta: { value: { x: 0, y: 0 } },
 	});
 
@@ -81,14 +80,13 @@ const Model = ({ activeProject }: { activeProject: TList | null }) => {
 		[viewport.height / 2, (-1 * viewport.height) / 2],
 	);
 
-	// biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
 	useEffect(() => {
 		if (activeProject !== null && meshRef.current) {
-			//@ts-ignore
+			// @ts-ignore
 			meshRef.current.material.uniforms.u_texture.value =
 				textures[activeProject.id - 1];
 		}
-	}, [activeProject]);
+	}, [activeProject, textures]);
 
 	return (
 		<motion.mesh ref={meshRef} position-x={x} position-y={y}>
