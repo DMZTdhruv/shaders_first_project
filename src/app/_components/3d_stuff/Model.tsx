@@ -4,7 +4,7 @@ import { motion } from "framer-motion-3d";
 import useDimension from "@/app/hooks/useDimension";
 import { useMotionValue, useSpring, useTransform } from "framer-motion";
 import { useFrame, useThree } from "@react-three/fiber";
-import { useAspect, useTexture } from "@react-three/drei";
+import { useTexture } from "@react-three/drei";
 import { someList } from "../../../../constants";
 import type { TList } from "../../../../types";
 
